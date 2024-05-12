@@ -1,0 +1,95 @@
+.node {
+    width: 30px;
+    height: 30px;
+    outline: 1px solid lightgray;
+    display: inline-block;
+}
+
+.empty {
+
+    background-color: white;
+}
+
+.finish {
+    background-color:red;
+}
+
+.start {
+    background-color:green;
+}
+
+.wall {
+    animation: wall 0.3s ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    background-color:#696969;
+    outline: 1px solid #696969;
+}
+
+.visit {
+    animation: visit 1.5s ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    /* border-color: white; */
+}
+
+.path {
+    animation: path 1.5s ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.visited {
+    background-color: rgba(0, 190, 218, 0.75);
+}
+
+.pathFinished {
+    background-color: rgb(255, 255, 106);
+}
+
+@keyframes visit {
+0% {
+    transform: scale(0.3);
+    background-color: rgba(0, 0, 66, 0.75);
+    border-radius: 100%;
+}
+50% {
+    background-color: rgba(17, 104, 217, 0.75);
+    border-radius: 50%;
+}
+75% {
+    transform: scale(1.2);
+    background-color: rgba(0, 217, 159, 0.75);
+}
+100% {
+    transform: scale(1.0);
+    background-color: rgba(0, 190, 218, 0.75);
+}
+}
+
+@keyframes path {
+0% {
+    transform: scale(0.6);
+    background-color: rgb(255, 255, 106);
+}
+50% {
+    transform: scale(1.2);
+    background-color: rgb(255, 255, 106);
+}
+100% {
+    transform: scale(1);
+    background-color: rgb(255, 255, 106);
+}
+}
+
+@keyframes wall {
+    0% {
+        transform: scale(0.6);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
