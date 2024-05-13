@@ -2,7 +2,6 @@
 A website that can visualise path finding and maze generation algorithms.
 
 ## [Demo](https://0mn1verze.github.io/path-finding-visualiser/)
-## ![Alt text](resources/demo.mp4)
 
 ## Path Finding Algorithms
 - A*
