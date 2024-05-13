@@ -6,7 +6,6 @@
 }
 
 .empty {
-
     background-color: white;
 }
 
@@ -19,77 +18,97 @@
 }
 
 .wall {
-    animation: wall 0.3s ease-out;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
     background-color:#696969;
     outline: 1px solid #696969;
 }
 
 .visit {
-    animation: visit 1.5s ease-out;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-    /* border-color: white; */
+    background-color: rgba(0, 190, 218, 0.75);
 }
 
 .path {
+    background-color: rgb(255, 255, 106);
+}
+
+.wall.animate {
+    animation: wall 0.3s ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.visit.animate {
+    animation: visit 1.5s ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.path.animate {
     animation: path 1.5s ease-out;
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
 
-.visited {
-    background-color: rgba(0, 190, 218, 0.75);
-}
-
-.pathFinished {
-    background-color: rgb(255, 255, 106);
+.empty.animate {
+    animation: empty 0.3s ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
 }
 
 @keyframes visit {
-0% {
-    transform: scale(0.3);
-    background-color: rgba(0, 0, 66, 0.75);
-    border-radius: 100%;
-}
-50% {
-    background-color: rgba(17, 104, 217, 0.75);
-    border-radius: 50%;
-}
-75% {
-    transform: scale(1.2);
-    background-color: rgba(0, 217, 159, 0.75);
-}
-100% {
-    transform: scale(1.0);
-    background-color: rgba(0, 190, 218, 0.75);
-}
+    0% {
+        transform: scale(0.3);
+        background-color: rgba(0, 0, 66, 0.75);
+        border-radius: 100%;
+    }
+    50% {
+        background-color: rgba(17, 104, 217, 0.75);
+        border-radius: 50%;
+    }
+    75% {
+        transform: scale(1.2);
+        background-color: rgba(0, 217, 159, 0.75);
+    }
+    100% {
+        transform: scale(1.0);
+        background-color: rgba(0, 190, 218, 0.75);
+    }
 }
 
 @keyframes path {
-0% {
-    transform: scale(0.6);
-    background-color: rgb(255, 255, 106);
-}
-50% {
-    transform: scale(1.2);
-    background-color: rgb(255, 255, 106);
-}
-100% {
-    transform: scale(1);
-    background-color: rgb(255, 255, 106);
-}
+    0% {
+        transform: scale(0.6);
+        background-color: rgb(255, 255, 106);
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: rgb(255, 255, 106);
+    }
+    100% {
+        transform: scale(1);
+        background-color: rgb(255, 255, 106);
+    }
 }
 
 @keyframes wall {
     0% {
         transform: scale(0.6);
     }
-    50% {
+    75% {
         transform: scale(1.2);
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes empty {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0.6);
     }
 }

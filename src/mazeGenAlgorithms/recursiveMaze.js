@@ -1,5 +1,14 @@
 export default function recursiveMaze(board) {
-  const walls = divide(board, 0, 0, board.row, board.col);
+  let walls = [];
+
+  for (let i = 0; i < board.row; i++) {
+    for (let j = 0; j < board.col; j++) {
+      if (i === 0 || i === board.row - 1 || j === 0 || j === board.col - 1)
+        walls.push(board.grid[i][j]);
+    }
+  }
+
+  walls.push(...divide(board, 1, 1, board.row - 2, board.col - 2));
   return walls;
 }
 
@@ -39,7 +48,7 @@ function divide(board, row, col, height, width) {
   let newHeight = horizontal ? height : wallRow - row;
   let newWidth = horizontal ? wallCol - col : width;
 
-  walls = walls.concat(divide(board, row, col, newHeight, newWidth));
+  walls.push(...divide(board, row, col, newHeight, newWidth));
 
   let newRow = horizontal ? row : wallRow + 1;
   let newCol = horizontal ? wallCol + 1 : col;
@@ -47,7 +56,7 @@ function divide(board, row, col, height, width) {
   newHeight = horizontal ? height : row + height - wallRow - 1;
   newWidth = horizontal ? col + width - wallCol - 1 : width;
 
-  walls = walls.concat(divide(board, newRow, newCol, newHeight, newWidth));
+  walls.push(...divide(board, newRow, newCol, newHeight, newWidth));
 
   return walls;
 }

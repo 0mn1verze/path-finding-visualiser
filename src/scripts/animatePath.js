@@ -1,3 +1,5 @@
+import { animate } from "./utilties";
+
 export default class PathFindAnimation {
   constructor(board, callback = () => {}) {
     this.board = board;
@@ -22,28 +24,29 @@ export default class PathFindAnimation {
 
   _visitNode(node) {
     if (node.type === "start" || node.type === "finish") return;
-    document.getElementById(`${node.row}-${node.col}`).className += " visit";
+    document.getElementById(`${node.row}-${node.col}`).className = "node visit";
+    animate(node, 1500);
   }
 
   _visitPath(node) {
     if (node.type === "start" || node.type === "finish") return;
-    document.getElementById(`${node.row}-${node.col}`).className += " path";
+    document.getElementById(`${node.row}-${node.col}`).className = "node path";
+    animate(node, 1500);
   }
 
   _showNode(node) {
     if (node.type === "start" || node.type === "finish") return;
-    document.getElementById(`${node.row}-${node.col}`).className += " visited";
+    document.getElementById(`${node.row}-${node.col}`).className = "node visit";
   }
 
   _showPath(node) {
     if (node.type === "start" || node.type === "finish") return;
-    document.getElementById(`${node.row}-${node.col}`).className +=
-      " pathFinished";
+    document.getElementById(`${node.row}-${node.col}`).className = "node path";
   }
 
   _animatePathFinding() {
     this.visited?.forEach((node, i) => {
-      if (i === this.visited.length - 1 && this.successful) {
+      if (i === this.visited.length - 1 && this.path.length !== 0) {
         setTimeout(() => this._animateShortestPath(this.path), 10 * i);
         return;
       }
@@ -63,46 +66,26 @@ export default class PathFindAnimation {
     this.visited?.forEach((node) => {
       this._showNode(node);
     });
-    this.path?.forEach((node) => {
-      this._showPath(node);
-    });
+    if (this.path.length !== 0) {
+      this.path?.forEach((node) => {
+        this._showPath(node);
+      });
+    }
     this._callback();
   }
 
   show(algorithm) {
     this.reset();
-    [this.visited, this.successful] = algorithm(
-      this.board,
-      this.startNode,
-      this.finishNode
-    );
+    [this.visited, this.path] = algorithm(this.board);
     this.visited.shift();
-    this._getShortestPath(this.startNode, this.finishNode);
     this._showPathFinding();
   }
 
   visualise(algorithm) {
     this.reset();
-    [this.visited, this.successful] = algorithm(
-      this.board,
-      this.startNode,
-      this.finishNode
-    );
+    [this.visited, this.path] = algorithm(this.board);
     this.visited.shift();
-    this._getShortestPath(this.startNode, this.finishNode);
-    console.log(this.visited, this.path);
     this._animatePathFinding();
-  }
-
-  _getShortestPath() {
-    this.path = [];
-    let current = this.finishNode;
-    if (current.previousNode === null) return;
-    while (current.type !== "start") {
-      current = current.previousNode;
-      this.path.unshift(current);
-    }
-    this.path.shift();
   }
 
   reset() {
@@ -112,12 +95,9 @@ export default class PathFindAnimation {
     for (let i = 0; i < this.board.row; i++) {
       for (let j = 0; j < this.board.col; j++) {
         const node = this.nodes[i][j];
+        this.board.resetNode(node.row, node.col);
         document.getElementById(`${node.row}-${node.col}`).className =
           "node " + node.type;
-        node.isVisited = false;
-        node.score = Infinity;
-        node.distance = Infinity;
-        node.previousNode = null;
       }
     }
   }

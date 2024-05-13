@@ -2,7 +2,7 @@ nav {
     background-color: #202777;
 }
 
-.clear-grid {
+.menu-btn {
    color: white;
    width: 100px;
    border: none;
@@ -14,44 +14,25 @@ nav {
    cursor: pointer;
 }
 
-.pathfind {
-   color: white;
-   width: 100px;
-   border: none;
-   padding: 10px;
-   text-align: center;
-   text-decoration: none;
-   font-size: 16px;
-   margin: 4px 2px;
-   cursor: pointer;
+.menu-btn.clear-grid {
+   width: 120px
+
 }
 
 .pathfind.dropdown {
-   width: 100px;
+   width: 120px;
 }
 
 .pathfind.visualise {
-   width: 145px;
-}
-
-.mazegen {
-   color: white;
-   width: 100px;
-   border: none;
-   padding: 10px;
-   text-align: center;
-   text-decoration: none;
-   font-size: 16px;
-   margin: 4px 2px;
-   cursor: pointer;
+   width: 250px;
 }
 
 .mazegen.dropdown {
-   width: 150px;
+   width: 160px;
 }
 
 .mazegen.visualise {
-   width: 200px;
+   width: 230px;
 }
 
 /* .nav-btn {

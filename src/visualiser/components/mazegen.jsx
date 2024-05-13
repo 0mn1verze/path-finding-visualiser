@@ -29,7 +29,7 @@ export default function mazeGen({
       });
     });
     animation.reset();
-    animation.visualise(mazeGenAlgo.algorithm);
+    animation.visualise(mazeGenAlgo);
     setBoard(new Board(board));
   }
 
@@ -39,18 +39,18 @@ export default function mazeGen({
     <>
       <div className="dropdown m-2">
         <button
-          className="btn btn-primary dropdown-toggle mazegen dropdown"
+          className="btn btn-primary dropdown-toggle menu-btn  mazegen dropdown"
           href="#"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
           disabled={disable}
         >
-          {mazeGenAlgo.name}
+          Maze Generation
         </button>
         <ul className="dropdown-menu">
           {Object.entries(mazeGenerationAlgorithms).map(([key, value]) => (
-            <li>
+            <li key={key}>
               <a
                 className="dropdown-item"
                 href="#"
@@ -63,7 +63,7 @@ export default function mazeGen({
         </ul>
       </div>
       <button
-        className="btn btn-primary m-2 mazegen visualise"
+        className="btn btn-primary m-2 menu-btn mazegen visualise"
         onClick={() => visualise()}
         disabled={disable}
       >

@@ -47,13 +47,12 @@ export default function Navbar({
           </a>
         </div>
         <button
-          className="btn btn-primary clear-grid"
+          className="btn btn-primary menu-btn clear-grid"
           onClick={clear}
           disabled={disable}
         >
           Clear Grid
         </button>
-
         <PathFind
           board={board}
           setBoard={setBoard}
