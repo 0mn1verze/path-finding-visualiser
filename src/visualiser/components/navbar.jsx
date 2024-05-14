@@ -36,6 +36,15 @@ export default function Navbar({
     });
   }
 
+  function clearPath() {
+    animation.reset();
+    setVisualState({
+      ...visualState,
+      generatingResult: false,
+      solved: false,
+    });
+  }
+
   let disable = visualState.generatingResult || visualState.generatingMaze;
 
   return (
@@ -52,6 +61,13 @@ export default function Navbar({
           disabled={disable}
         >
           Clear Grid
+        </button>
+        <button
+          className="btn btn-primary menu-btn clear-grid"
+          onClick={clearPath}
+          disabled={disable}
+        >
+          Clear Path
         </button>
         <PathFind
           board={board}

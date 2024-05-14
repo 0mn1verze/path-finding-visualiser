@@ -37,19 +37,22 @@
 }
 
 .visit.animate {
+    outline: none;
     animation: visit 1.5s ease-out;
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
 
 .path.animate {
+    outline: none;
     animation: path 1.5s ease-out;
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
 
 .empty.animate {
-    animation: empty 0.3s ease-out;
+    outline: none;
+    animation: empty 0.3s ease-in;
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
@@ -104,11 +107,18 @@
 @keyframes empty {
     0% {
         transform: scale(1);
+        background-color: #a0a0a0;
     }
-    25% {
-        transform: scale(1.2);
+    50% {
+        transform: scale(0.5);
+        background-color: gray;
+    }
+    75% {
+        transform: scale(0.3);
+        background-color: lightgray;
     }
     100% {
-        transform: scale(0.6);
+        transform: scale(0.1);
+        background-color: white;
     }
 }

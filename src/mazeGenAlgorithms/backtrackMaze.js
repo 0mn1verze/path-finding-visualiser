@@ -26,10 +26,16 @@ export default function backTrackMaze(board) {
 
       current = randomNeighbour;
     } else if (stack.length > 0) {
+      let node = current;
       path.push(current);
       current = stack.pop();
+      path.push(
+        board.grid[(node.row + current.row) / 2][(node.col + current.col) / 2]
+      );
     } else break;
   }
+
+  path.push(board.grid[1][1]);
 
   return path;
 }
