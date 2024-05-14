@@ -7,6 +7,7 @@ import PathFindAnimation from "../scripts/animatePath";
 import { pathFindingAlgorithms } from "../scripts/algorithms";
 
 import "./style/main.css";
+import "./style/node.css";
 
 import Navbar from "./components/navbar";
 
@@ -42,6 +43,34 @@ export default function Main() {
         pathFindAlgo={pathFindAlgo}
         setPathFindAlgo={setPathFindAlgo}
       />
+      <div className="description">
+        <ul>
+          <li>
+            <div className="display node start" />
+            Start Node
+          </li>
+          <li>
+            <div className="display node finish" />
+            Finish Node
+          </li>
+          <li>
+            <div className="display node wall" />
+            Wall Node
+          </li>
+          <li>
+            <div className="display node empty" />
+            Unvisited Node
+          </li>
+          <li>
+            <div className="display node visit" />
+            Visited Node
+          </li>
+          <li>
+            <div className="display node path" />
+            Path Node
+          </li>
+        </ul>
+      </div>
       <Grid
         board={board}
         setBoard={setBoard}
