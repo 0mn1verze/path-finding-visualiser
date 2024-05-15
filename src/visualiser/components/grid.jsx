@@ -27,36 +27,6 @@ export default function Grid({
     }
   }
 
-  function handleMouseDown(e, row, col) {
-    // e.preventDefault();
-    // if (visualState.generatingResult) return;
-    // if (e.buttons === 1) board.addWall(row, col);
-    // else if (e.buttons === 2) board.removeWall(row, col);
-    // else return;
-    // setBoard(new Board(board));
-    // setNodeType(board.grid[row][col].type);
-  }
-
-  function handleMouseEnter(e, row, col) {
-    // e.preventDefault();
-    // if (visualState.generatingResult) return;
-    // if (e.buttons === 1) {
-    //   switch (nodetype) {
-    //     case "start":
-    //       board.moveStart(row, col);
-    //       break;
-    //     case "finish":
-    //       board.moveFinish(row, col);
-    //       break;
-    //     default:
-    //       board.addWall(row, col);
-    //       break;
-    //   }
-    // } else if (e.buttons === 2) board.removeWall(row, col);
-    // else return;
-    // setBoard(new Board(board));
-  }
-
   function handlePointerDown(e, row, col) {
     e.preventDefault();
     e.target.releasePointerCapture(e.pointerId);
@@ -105,13 +75,13 @@ export default function Grid({
 
   return (
     <div
-      className="grid"
+      id="grid"
       onContextMenu={(e) => {
         e.preventDefault();
       }}
     >
       {board.grid.map((row, i) => (
-        <div key={i} className="grid-column">
+        <div key={i} id="grid-column">
           {row.map((node, j) => {
             const { row, col, _, type } = node;
             return (
@@ -120,8 +90,6 @@ export default function Grid({
                 row={row}
                 col={col}
                 type={type}
-                onMouseDown={handleMouseDown}
-                onMouseEnter={handleMouseEnter}
                 onPointerDown={handlePointerDown}
                 onPointerEnter={handlePointerEnter}
                 onPointerUp={handlePointerUp}

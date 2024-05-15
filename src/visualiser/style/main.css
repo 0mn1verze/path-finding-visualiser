@@ -3,6 +3,7 @@
     justify-content: center;
     margin: 20px auto;
     width: 80%;
+    font-size: 1rem;
 }
 
 .description > ul li {
@@ -12,11 +13,10 @@
 }
 
 .display {
-    width: 1.5vw;
-    height: 1.5vw;
+    width: 1em;
+    height: 1em;
     display: inline-block;
     position: relative;
-    top: 0.25em;
     margin: 0 0.42em;
 }
 

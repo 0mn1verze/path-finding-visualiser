@@ -1,5 +1,7 @@
 import { animate } from "./utilties";
 
+import { CONFIG } from "../visualiser.config";
+
 export default class MazeGenAnimation {
   constructor(board, callback = () => {}) {
     this.board = board;
@@ -18,30 +20,36 @@ export default class MazeGenAnimation {
   _addWall(node) {
     if (node.type === "start" || node.type === "finish") return;
     document.getElementById(`${node.row}-${node.col}`).className = "node wall";
-    animate(node, 500);
+    animate(node, 300);
     node.type = "wall";
   }
 
   _removeWall(node) {
     if (node.type === "start" || node.type === "finish") return;
     document.getElementById(`${node.row}-${node.col}`).className = "node empty";
-    animate(node, 500);
+    animate(node, 300);
     node.type = "empty";
   }
 
   _animateWalls() {
     this.walls?.forEach((wall, i) => {
-      setTimeout(() => this._addWall(wall), 10 * i);
+      setTimeout(() => this._addWall(wall), CONFIG.ANIMATIONSPEED.WALL * i);
     });
-    setTimeout(this._callback, 10 * this.walls?.length);
+    setTimeout(this._callback, CONFIG.ANIMATIONSPEED.WALL * this.walls?.length);
   }
 
   _animatePath() {
     this._setWalls();
     this.path?.forEach((node, i) => {
-      setTimeout(() => this._removeWall(node), 10 * (this.board.col + i));
+      setTimeout(
+        () => this._removeWall(node),
+        CONFIG.ANIMATIONSPEED.WALL * (this.board.col + i)
+      );
     });
-    setTimeout(this._callback, 10 * (this.board.col + this.path?.length));
+    setTimeout(
+      this._callback,
+      CONFIG.ANIMATIONSPEED.WALL * (this.board.col + this.path?.length)
+    );
   }
 
   visualise(algorithm) {

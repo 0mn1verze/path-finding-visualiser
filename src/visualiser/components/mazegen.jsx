@@ -39,7 +39,8 @@ export default function mazeGen({
     <>
       <div className="dropdown m-2">
         <button
-          className="btn btn-primary dropdown-toggle menu-btn  mazegen dropdown"
+          id="menu-btn"
+          className="btn btn-primary dropdown-toggle"
           href="#"
           role="button"
           data-bs-toggle="dropdown"
@@ -63,7 +64,8 @@ export default function mazeGen({
         </ul>
       </div>
       <button
-        className="btn btn-primary m-2 menu-btn mazegen visualise"
+        id="menu-btn"
+        className="btn btn-primary m-2"
         onClick={() => visualise()}
         disabled={disable}
       >

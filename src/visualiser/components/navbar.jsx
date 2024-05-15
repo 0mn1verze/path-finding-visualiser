@@ -3,10 +3,7 @@ import Board from "../../scripts/board";
 
 import { useState } from "react";
 
-import {
-  pathFindingAlgorithms,
-  mazeGenerationAlgorithms,
-} from "../../scripts/algorithms";
+import { mazeGenerationAlgorithms } from "../../scripts/algorithms";
 
 import "../style/navbar.css";
 
@@ -26,7 +23,8 @@ export default function Navbar({
   );
 
   function clear() {
-    setBoard(new Board());
+    board.resetGrid();
+    setBoard(new Board(board));
     animation.reset();
     setVisualState({
       generatingMaze: false,
@@ -48,22 +46,24 @@ export default function Navbar({
   let disable = visualState.generatingResult || visualState.generatingMaze;
 
   return (
-    <nav className="navbar">
-      <div className="nav nav-pills container-fluid d-flex justify-content-center align-items-center fs-5">
+    <nav id="nav" className="navbar">
+      <div className="nav nav-pills d-flex justify-content-center align-items-center container-fluid">
         <div className="navbar-header mx-auto my-3">
-          <a className="navbar-brand fs-1 fw-bolder text-white" href="#">
+          <a id="title" className="navbar-brand fw-bolder text-white" href="#">
             Pathfinding Visualiser
           </a>
         </div>
         <button
-          className="btn btn-primary menu-btn clear-grid"
+          id="menu-btn"
+          className="btn btn-primary m-2"
           onClick={clear}
           disabled={disable}
         >
           Clear Grid
         </button>
         <button
-          className="btn btn-primary menu-btn clear-grid"
+          id="menu-btn"
+          className="btn btn-primary m-2"
           onClick={clearPath}
           disabled={disable}
         >

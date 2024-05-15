@@ -1,12 +1,18 @@
 import { animate } from "./utilties";
 
-const DEFAULT_START_ROW = 10;
-const DEFAULT_START_COL = 5;
-const DEFAULT_FINISH_ROW = 10;
-const DEFAULT_FINISH_COL = 45;
+import $ from "jquery";
 
-const ROW = 21;
-const COL = 51;
+const ROW = Math.floor($(document).height() / 80) * 2 + 1;
+const COL = Math.floor($(document).width() / 60) * 2 + 1;
+
+const root = document.querySelector(":root");
+
+const nodeDim = `${Math.floor(($(document).width() * 0.75) / COL)}px`;
+
+root.style.setProperty("--row", ROW);
+root.style.setProperty("--col", COL);
+root.style.setProperty("--node-width", nodeDim);
+root.style.setProperty("--node-height", nodeDim);
 
 export default class Board {
   constructor(board = null) {
@@ -16,10 +22,10 @@ export default class Board {
     this.col = COL;
 
     if (this.grid.length === 0) {
-      this.start_row = DEFAULT_START_ROW;
-      this.start_col = DEFAULT_START_COL;
-      this.finish_row = DEFAULT_FINISH_ROW;
-      this.finish_col = DEFAULT_FINISH_COL;
+      this.start_row = Math.floor(this.row / 2);
+      this.start_col = 2;
+      this.finish_row = Math.floor(this.row / 2);
+      this.finish_col = this.col - 3;
       this.resetGrid();
     } else {
       this.start_row = board.start_row;

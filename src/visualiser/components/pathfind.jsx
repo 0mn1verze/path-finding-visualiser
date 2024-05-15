@@ -26,7 +26,8 @@ export default function PathFind({
     <>
       <div className="dropdown m-2">
         <button
-          className="btn btn-primary dropdown-toggle menu-btn pathfind dropdown"
+          id="menu-btn"
+          className="btn btn-primary dropdown-toggle"
           href="#"
           role="button"
           data-bs-toggle="dropdown"
@@ -50,7 +51,8 @@ export default function PathFind({
         </ul>
       </div>
       <button
-        className="btn btn-primary m-2 menu-btn pathfind visualise"
+        id="menu-btn"
+        className="btn btn-primary m-2"
         onClick={() => visualise()}
         disabled={disable}
       >

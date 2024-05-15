@@ -43,7 +43,7 @@ export default function Main() {
         pathFindAlgo={pathFindAlgo}
         setPathFindAlgo={setPathFindAlgo}
       />
-      <div className="description">
+      <div id="desc" className="description">
         <ul>
           <li>
             <div className="display node start" />

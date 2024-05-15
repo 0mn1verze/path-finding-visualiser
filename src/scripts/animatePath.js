@@ -1,5 +1,7 @@
 import { animate } from "./utilties";
 
+import { CONFIG } from "../visualiser.config";
+
 export default class PathFindAnimation {
   constructor(board, callback = () => {}) {
     this.board = board;
@@ -47,19 +49,25 @@ export default class PathFindAnimation {
   _animatePathFinding() {
     this.visited?.forEach((node, i) => {
       if (i === this.visited.length - 1 && this.path.length !== 0) {
-        setTimeout(() => this._animateShortestPath(this.path), 10 * i);
+        setTimeout(
+          () => this._animateShortestPath(this.path),
+          CONFIG.ANIMATIONSPEED.VISIT * i
+        );
         return;
       }
-      setTimeout(() => this._visitNode(node), 10 * i);
+      setTimeout(() => this._visitNode(node), CONFIG.ANIMATIONSPEED.VISIT * i);
     });
   }
 
   _animateShortestPath() {
     this.path?.forEach((node, i) => {
-      setTimeout(() => this._visitPath(node), 50 * i);
+      setTimeout(() => this._visitPath(node), CONFIG.ANIMATIONSPEED.PATH * i);
     });
 
-    setTimeout(() => this._callback(), 50 * this.path.length);
+    setTimeout(
+      () => this._callback(),
+      CONFIG.ANIMATIONSPEED.PATH * this.path.length
+    );
   }
 
   _showPathFinding() {
