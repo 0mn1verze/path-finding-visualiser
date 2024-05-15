@@ -48,7 +48,7 @@ export default class PathFindAnimation {
 
   _animatePathFinding() {
     this.visited?.forEach((node, i) => {
-      if (i === this.visited.length - 1 && this.path.length !== 0) {
+      if (i === this.visited.length - 1) {
         setTimeout(
           () => this._animateShortestPath(this.path),
           CONFIG.ANIMATIONSPEED.VISIT * i
@@ -79,7 +79,6 @@ export default class PathFindAnimation {
         this._showPath(node);
       });
     }
-    this._callback();
   }
 
   show(algorithm) {

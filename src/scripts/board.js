@@ -58,6 +58,7 @@ export default class Board {
       score: { src: Infinity, dest: Infinity },
       set: Infinity,
       visited: { src: false, dest: false },
+      path: false,
       previousNode: null,
       type: nodeType,
     };
@@ -92,6 +93,7 @@ export default class Board {
     node.score = { src: Infinity, dest: Infinity };
     node.distance = { src: Infinity, dest: Infinity };
     node.visited = { src: false, dest: false };
+    node.path = false;
     node.previousNode = null;
   }
 

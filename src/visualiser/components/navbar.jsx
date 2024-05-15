@@ -17,6 +17,7 @@ export default function Navbar({
   animation,
   pathFindAlgo,
   setPathFindAlgo,
+  showResult,
 }) {
   const [mazeGenAlgo, setMazeGenAlgo] = useState(
     mazeGenerationAlgorithms.recursiveMaze
@@ -49,9 +50,9 @@ export default function Navbar({
     <nav id="nav" className="navbar">
       <div className="nav nav-pills d-flex justify-content-center align-items-center container-fluid">
         <div className="navbar-header mx-auto my-3">
-          <a id="title" className="navbar-brand fw-bolder text-white" href="#">
+          <p id="title" className="navbar-brand fw-bolder text-white">
             Pathfinding Visualiser
-          </a>
+          </p>
         </div>
         <button
           id="menu-btn"

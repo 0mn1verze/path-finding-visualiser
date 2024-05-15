@@ -1,31 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Node from "./node";
 import Board from "../../scripts/board";
 
 import "../style/grid.css";
 
-export default function Grid({
-  board,
-  setBoard,
-  visualState,
-  setVisualState,
-  animation,
-  pathFindAlgo,
-}) {
+export default function Grid({ board, setBoard, visualState, showResult }) {
   const [nodetype, setNodeType] = useState("empty");
-
-  function showResult() {
-    if (visualState.solved && (nodetype === "start" || nodetype === "finish")) {
-      setVisualState({
-        ...visualState,
-        generatingResult: true,
-        solved: false,
-      });
-      animation.update(board);
-      animation.show(pathFindAlgo.algorithm);
-    }
-  }
 
   function handlePointerDown(e, row, col) {
     e.preventDefault();
@@ -39,10 +20,13 @@ export default function Grid({
     setBoard(new Board(board));
 
     setNodeType(board.grid[row][col].type);
+
+    showResult();
   }
 
   function handlePointerEnter(e, row, col) {
     e.preventDefault();
+    e.target.releasePointerCapture(e.pointerId);
     if (visualState.generatingResult) return;
     if (!e.isPrimary) return;
     if (!e.pressure) return;
@@ -59,19 +43,18 @@ export default function Grid({
       case "empty":
         board.removeWall(row, col);
         break;
+      default:
+        return;
     }
-
     setBoard(new Board(board));
+
+    showResult();
   }
 
   function handlePointerUp(e) {
     e.preventDefault();
     setNodeType("empty");
   }
-
-  useEffect(() => {
-    showResult();
-  }, [board]);
 
   return (
     <div
@@ -83,13 +66,14 @@ export default function Grid({
       {board.grid.map((row, i) => (
         <div key={i} id="grid-column">
           {row.map((node, j) => {
-            const { row, col, _, type } = node;
+            const { row, col } = node;
             return (
               <Node
+                visualState={visualState}
                 key={j}
                 row={row}
                 col={col}
-                type={type}
+                node={board.grid[row][col]}
                 onPointerDown={handlePointerDown}
                 onPointerEnter={handlePointerEnter}
                 onPointerUp={handlePointerUp}

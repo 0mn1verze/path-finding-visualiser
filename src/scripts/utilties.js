@@ -12,7 +12,7 @@ export function getNeighbours(grid, node, gap = 1) {
   if (row < grid.length - gap) neighbours.push(grid[row + gap][col]);
   if (col > gap - 1) neighbours.push(grid[row][col - gap]);
   if (col < grid[0].length - gap) neighbours.push(grid[row][col + gap]);
-  return neighbours.filter((neighbour) => !neighbour.isVisited);
+  return neighbours.filter((node) => !node.visited.src);
 }
 
 export function distance(node1, node2) {
@@ -58,6 +58,7 @@ export function getShortestPath(finishNode) {
   if (current.previousNode === null) return;
   while (current.type !== "start" && current.previousNode !== null) {
     current = current.previousNode;
+    current.path = true;
     path.unshift(current);
   }
   path.shift();
@@ -73,8 +74,12 @@ export function getBidirectionalShortestPath(src_parent, dest_parent, current) {
   let path = [current];
   let i = current;
   if (src_parent[nodeID(i)] == null) return path;
+
+  current.path = true;
+
   while (i.type !== "start" && src_parent[nodeID(i)] != null) {
     i = src_parent[nodeID(i)];
+    i.path = true;
     path.unshift(i);
   }
 
@@ -82,6 +87,7 @@ export function getBidirectionalShortestPath(src_parent, dest_parent, current) {
   if (dest_parent[nodeID(i)] == null) return path;
   while (i.type !== "finish" && dest_parent[nodeID(i)] != null) {
     i = dest_parent[nodeID(i)];
+    i.path = true;
     path.push(i);
   }
 

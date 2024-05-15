@@ -4,12 +4,14 @@ export default function backTrackMaze(board) {
   let path = [];
   let stack = [];
 
-  board.grid[1][1].isVisited = true;
+  board.grid[1][1].visited.src = true;
   let current = board.grid[1][1];
 
   while (true) {
-    current.isVisited = true;
-    let neighbours = getNeighbours(board.grid, current, 2);
+    current.visited.src = true;
+    let neighbours = getNeighbours(board.grid, current, 2).filter(
+      (node) => node.type !== "start" && node.type !== "finish"
+    );
     if (neighbours.length !== 0) {
       let randomIdx = Math.floor(Math.random() * neighbours.length);
       let randomNeighbour = neighbours[randomIdx];

@@ -24,13 +24,20 @@ export default function Main() {
     pathFindingAlgorithms.dijkstra
   );
 
-  const animation = new PathFindAnimation(board, () =>
+  function showResult() {
+    if (visualState.solved) {
+      animation.update(board);
+      animation.show(pathFindAlgo.algorithm);
+    }
+  }
+
+  const animation = new PathFindAnimation(board, () => {
     setVisualState({
       ...visualState,
       generatingResult: false,
       solved: true,
-    })
-  );
+    });
+  });
 
   return (
     <>
@@ -42,6 +49,7 @@ export default function Main() {
         animation={animation}
         pathFindAlgo={pathFindAlgo}
         setPathFindAlgo={setPathFindAlgo}
+        showResult={showResult}
       />
       <div id="desc" className="description">
         <ul>
@@ -75,9 +83,7 @@ export default function Main() {
         board={board}
         setBoard={setBoard}
         visualState={visualState}
-        setVisualState={setVisualState}
-        animation={animation}
-        pathFindAlgo={pathFindAlgo}
+        showResult={showResult}
       />
     </>
   );
