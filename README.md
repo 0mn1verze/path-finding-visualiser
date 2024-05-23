@@ -11,7 +11,6 @@ A website that can visualise path finding and maze generation algorithms.
 - Dijkstra
 - Bidirectional A* (Starts at start node and end node at the same time)
 - Bidirectional BFS
-- Bidirectional BFS
 - Bidirectional Dijkstra
 
 ## Maze Generation Algorithms
