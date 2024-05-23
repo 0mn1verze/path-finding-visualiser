@@ -1,5 +1,5 @@
 # Path Finding Visualiser
-A website that can visualise path finding and maze generation algorithms.
+A website that can visualise path finding and maze generation algorithms. Influenced by Clément Mihailescu's [Path Finding Visualiser Tutorial](https://www.youtube.com/watch?v=msttfIHHkak)
 
 ## [Demo (Drawing and moving only available on desktops)](https://0mn1verze.github.io/path-finding-visualiser/)
 - Drag to move the start point and draw walls, drag on wall to remove it
