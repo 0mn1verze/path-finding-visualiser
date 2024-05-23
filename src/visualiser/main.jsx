@@ -20,9 +20,7 @@ export default function Main() {
     solved: false,
   });
 
-  const [pathFindAlgo, setPathFindAlgo] = useState(
-    pathFindingAlgorithms.dijkstra
-  );
+  const [pathFindAlgo, setPathFindAlgo] = useState(pathFindingAlgorithms[0]);
 
   function showResult() {
     if (visualState.solved) {

@@ -13,44 +13,36 @@ import ellerMaze from "../mazeGenAlgorithms/ellerMaze";
 import primMaze from "../mazeGenAlgorithms/primMaze";
 import biAStar from "../pathFindAlgorithms/biAStar";
 
-export const pathFindingAlgorithms = {
-  dijkstra: { name: "Dijkstra", algorithm: dijkstra },
-  astar: { name: "A*", algorithm: astar },
-  breathFirstSearch: {
-    name: "Breath First Search",
-    algorithm: breathFirstSearch,
-  },
-  depthFirstSearch: { name: "Depth First Search", algorithm: depthFirstSearch },
-  biBFS: { name: "Bidirectional BFS", algorithm: biBFS },
-  biDijkstra: { name: "Bidirectional Dijkstra", algorithm: biDijkstra },
-  biAStar: { name: "Bidirectional A*", algorithm: biAStar },
-};
+class PathFindAlgo {
+  constructor(algorithm, name) {
+    this.name = name;
+    this.algorithm = algorithm;
+  }
+}
 
-export const mazeGenerationAlgorithms = {
-  randomMaze: { name: "Random Maze", algorithm: randomMaze, wallGen: true },
-  recursiveMaze: {
-    name: "Recursive Maze",
-    algorithm: recursiveMaze,
-    wallGen: true,
-  },
-  backtrackMaze: {
-    name: "Backtrack Maze",
-    algorithm: backTrackMaze,
-    wallGen: false,
-  },
-  kruskalMaze: {
-    name: "Kruskal Maze",
-    algorithm: kruskalMaze,
-    wallGen: false,
-  },
-  ellerMaze: {
-    name: "Eller Maze",
-    algorithm: ellerMaze,
-    wallGen: false,
-  },
-  primMaze: {
-    name: "Prim Maze",
-    algorithm: primMaze,
-    wallGen: false,
-  },
-};
+class MazeGenAlgo {
+  constructor(algorithm, name, wallGen) {
+    this.name = name;
+    this.algorithm = algorithm;
+    this.wallGen = wallGen;
+  }
+}
+
+export const pathFindingAlgorithms = [
+  new PathFindAlgo(dijkstra, "Dijkstra"),
+  new PathFindAlgo(astar, "A*"),
+  new PathFindAlgo(breathFirstSearch, "Breath First Search"),
+  new PathFindAlgo(depthFirstSearch, "Depth First Search"),
+  new PathFindAlgo(biBFS, "Bidirectional BFS"),
+  new PathFindAlgo(biDijkstra, "Bidirectional Dijkstra"),
+  new PathFindAlgo(biAStar, "Bidirectional A*"),
+];
+
+export const mazeGenerationAlgorithms = [
+  new MazeGenAlgo(randomMaze, "Random Maze", true),
+  new MazeGenAlgo(recursiveMaze, "Recursive Maze", true),
+  new MazeGenAlgo(backTrackMaze, "Backtrack Maze", false),
+  new MazeGenAlgo(kruskalMaze, "Kruskal Maze", false),
+  new MazeGenAlgo(ellerMaze, "Eller Maze", false),
+  new MazeGenAlgo(primMaze, "Prim Maze", false),
+];

@@ -47,8 +47,8 @@ export default function mazeGen({
           Maze Generation
         </button>
         <ul className="dropdown-menu">
-          {Object.entries(mazeGenerationAlgorithms).map(([key, value]) => (
-            <li key={key}>
+          {mazeGenerationAlgorithms.map((value, i) => (
+            <li key={i}>
               <button
                 className="dropdown-item"
                 onClick={() => setMazeGenAlgo(value)}

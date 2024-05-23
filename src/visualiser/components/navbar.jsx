@@ -17,11 +17,8 @@ export default function Navbar({
   animation,
   pathFindAlgo,
   setPathFindAlgo,
-  showResult,
 }) {
-  const [mazeGenAlgo, setMazeGenAlgo] = useState(
-    mazeGenerationAlgorithms.recursiveMaze
-  );
+  const [mazeGenAlgo, setMazeGenAlgo] = useState(mazeGenerationAlgorithms[0]);
 
   function clear() {
     board.resetGrid();

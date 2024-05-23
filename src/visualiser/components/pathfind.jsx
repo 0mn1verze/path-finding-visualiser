@@ -29,7 +29,6 @@ export default function PathFind({
           id="menu-btn"
           className="btn btn-primary dropdown-toggle"
           href="#"
-          role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
           disabled={disable}
@@ -37,15 +36,14 @@ export default function PathFind({
           Algorithms
         </button>
         <ul className="dropdown-menu">
-          {Object.entries(pathFindingAlgorithms).map(([key, value]) => (
-            <li key={key}>
-              <a
+          {pathFindingAlgorithms.map((value, i) => (
+            <li key={i}>
+              <button
                 className="dropdown-item"
-                href="#"
                 onClick={() => setPathFindAlgo(value)}
               >
                 {value.name}
-              </a>
+              </button>
             </li>
           ))}
         </ul>

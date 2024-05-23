@@ -61,3 +61,4 @@ export default function astar(board) {
 
   return [visited, []]; // return visited nodes when finish node is not reachable
 }
+
